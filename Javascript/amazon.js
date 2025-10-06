@@ -1,51 +1,27 @@
-const products = [{
-    image: "images/products/intermediate-composite-basketball.jpg",
-    name: "Intermediate Size Basketball",
-    ratings: {
-        stars: 4.5,
-        count: 87
-    },
-    pricecent: 1090,
-    
-}, {
-    image: "images/products/intermediate-composite-basketball.jpg",
-    name: "Intermediate Size Basketball",
-    ratings: {
-        stars: 4.5,
-        count: 56
-    },
-    pricecent: 799
-}, {
-    image: "images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg",
-    name: "Adults Plain Cotton T-Shirt - 2 Pack",
-    ratings: {
-        stars: 4,
-        count: 127,
-    },
-    pricecent: 20.95
-}];
-
+import {cart, addToCart} from '../data/cart.js';
+import { products } from '../data/products.js';
+let productHtml = "";
 products.forEach((product) => {
-    const html = `<div class="product-container">
+    productHtml += `<div class="product-container">
           <div class="product-image-container">
             <img class="product-image"
-              src="${products.image}">
+              src="${product.image}">
           </div>
 
           <div class="product-name limit-text-to-2-lines">
-            ${products.name}
+            ${product.name}
           </div>
 
           <div class="product-rating-container">
             <img class="product-rating-stars"
-              src="images/ratings/${products.}.png">
+              src="images/ratings/rating-${product.rating.stars * 10}.png">
             <div class="product-rating-count link-primary">
-              87
+              ${product.rating.count}
             </div>
           </div>
 
           <div class="product-price">
-            $10.90
+            ${(product.priceCents / 100).toFixed(2)}
           </div>
 
           <div class="product-quantity-container">
@@ -70,9 +46,27 @@ products.forEach((product) => {
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary">
+          <button class="add-to-cart-button 
+          button-primary js-add-to-cart"
+          data-product-id="${product.id}">
             Add to Cart
           </button>
         </div>`;
-        console.log(html);
-}); 
+});
+document.querySelector(".js-products").innerHTML = productHtml;
+document.querySelectorAll(".js-add-to-cart")
+.forEach((button) => {
+  button.addEventListener('click', () => {
+   const productid = button.dataset.productId;
+
+   addToCart(productid);
+   updateCartQuantity();
+   function updateCartQuantity() {
+  let cartQuantity = 0;
+    cart.forEach((item) => {
+      cartQuantity += item.quantity;
+    });
+    document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
+};
+  });
+});
