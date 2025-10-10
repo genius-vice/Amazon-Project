@@ -43,3 +43,15 @@ if (cartItem.productid !== productid) {
 cart = newCart;
 saveToStorage();
 };
+
+export function updateDeliveryOption(productid, deliveryOptionId) {
+let matchingItem;
+   cart.forEach((item) => {
+    if(productid === item.productid) {
+      matchingItem = item;
+    }
+   });
+   matchingItem.deliveryOptionId = deliveryOptionId;
+
+   saveToStorage();
+}
