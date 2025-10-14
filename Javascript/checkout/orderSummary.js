@@ -3,10 +3,6 @@ import {products, getProduct} from '../../data/products.js';
 import { formatCurrency } from '../utils/money.js';
 import { deliveryOptions, getDeliveryOption } from '../../data/deliverOptions.js';
 import { renderPaymentSummary } from './paymentSummary.js';
-   
-       const today = dayjs();
-       const deliveryDate = today.add(7, 'days');
-        console.log(deliveryDate.format('dddd, MMMM D'));
 
 export function renderOrderSummary() {
 
