@@ -7,7 +7,8 @@ import { loadCart } from "../data/cart.js";
 
 
 async function loadPage() {
-  await loadProductFetch();
+  try {
+    await loadProductFetch();
 
   await new Promise((resolve) => {
       loadCart(() => {
@@ -17,6 +18,9 @@ async function loadPage() {
 
     renderOrderSummary();
     renderPaymentSummary();
+  } catch (error) {
+      console.log('Oops unexpected error, try again later!')
+  }
 };
 loadPage();
 /*
