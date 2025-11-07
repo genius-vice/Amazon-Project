@@ -62,6 +62,7 @@ const tshirt = new Clothing( {
     type: "clothing",
     sizeChartLink: "images/clothing-size-chart.png"
   });
+  
   console.log(tshirt);
   console.log(tshirt.getPrice());
 
