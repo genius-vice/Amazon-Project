@@ -62,10 +62,10 @@ const tshirt = new Clothing( {
     type: "clothing",
     sizeChartLink: "images/clothing-size-chart.png"
   });
-  
+  /*
   console.log(tshirt);
   console.log(tshirt.getPrice());
-
+  */
 const product1 = new Product({
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     image: "images/products/athletic-cotton-socks-6-pairs.jpg",
@@ -92,7 +92,7 @@ export let products = [];
     }
     return new Product(productDetails); 
   });
-  console.log('load products');
+  //console.log('load products');
     })
     return promise;
   }
